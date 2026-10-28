@@ -1,0 +1,10 @@
+BioBusca 2.2 — correção de resultados repetidos
+
+1. Pare o servidor antigo: Ctrl+C.
+2. Extraia este ZIP em pasta NOVA.
+3. Abra a pasta e digite cmd na barra de endereço.
+4. Execute: py server.py
+5. Abra http://localhost:8000/mapa.html e pressione Ctrl+Shift+R.
+6. Teste fotossíntese e cafeína, comparando os nós e artigos.
+
+Correções: impede mistura de resultados de buscas sucessivas, limpa nós anteriores, deixa de apresentar questões autorais demonstrativas como resultado automático e prefere DOI para abrir artigos. O catálogo local ainda é pequeno. Sem questões oficiais classificadas, o mapa não inventará uma. SciELO pode apresentar erro 502 do serviço externo.

@@ -1,0 +1,111 @@
+{
+  "sources": [
+    {
+      "id": "enem",
+      "name": "ENEM / INEP",
+      "url": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/provas-e-gabaritos",
+      "description": "Provas e gabaritos oficiais de todas as edições."
+    },
+    {
+      "id": "enem_microdados",
+      "name": "Microdados do ENEM / INEP",
+      "url": "https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/enem",
+      "description": "Dados públicos sobre itens e gabaritos; conferir ano e caderno."
+    },
+    {
+      "id": "fuvest",
+      "name": "FUVEST / USP",
+      "url": "https://www.fuvest.br/acervo/",
+      "description": "Acervo oficial da FUVEST; integração futura."
+    }
+  ],
+  "items": [
+    {
+      "id": "demo-foto",
+      "origin": "autoral",
+      "verified_official": false,
+      "title": "Exercício demonstrativo: fotossíntese e luminosidade",
+      "concepts": [
+        "fotossintese"
+      ],
+      "keywords": [
+        "luz",
+        "cloroplasto",
+        "fotossíntese"
+      ],
+      "stem": "Em uma planta com água e CO₂ suficientes, a taxa fotossintética cresce com a intensidade luminosa até atingir um patamar. Qual interpretação é mais adequada?",
+      "options": [
+        "A luz deixa de ser necessária.",
+        "Outro fator passa a limitar a taxa fotossintética.",
+        "O oxigênio impede toda fotossíntese.",
+        "A planta deixa de consumir CO₂."
+      ],
+      "correct": 1,
+      "explanation": "Ao atingir a saturação luminosa, outro fator, como a disponibilidade de CO₂ ou a capacidade bioquímica, pode limitar a taxa."
+    },
+    {
+      "id": "demo-cafe",
+      "origin": "autoral",
+      "verified_official": false,
+      "title": "Exercício demonstrativo: cafeína e adenosina",
+      "concepts": [
+        "cafeina",
+        "circadiano"
+      ],
+      "keywords": [
+        "cafeína",
+        "adenosina",
+        "vigília"
+      ],
+      "stem": "A cafeína favorece o estado de alerta principalmente porque, em doses habituais, interfere na ação de qual substância sinalizadora?",
+      "options": [
+        "Hemoglobina",
+        "Adenosina",
+        "Insulina",
+        "Colágeno"
+      ],
+      "correct": 1,
+      "explanation": "A cafeína atua principalmente como antagonista dos receptores de adenosina."
+    },
+    {
+      "id": "demo-osmose",
+      "origin": "autoral",
+      "verified_official": false,
+      "title": "Exercício demonstrativo: osmose",
+      "concepts": [
+        "osmose"
+      ],
+      "keywords": [
+        "osmose",
+        "membrana",
+        "solução hipertônica"
+      ],
+      "stem": "Uma célula animal é colocada em solução hipertônica. Qual tendência é esperada?",
+      "options": [
+        "Entrada líquida de água e lise.",
+        "Saída líquida de água e redução de volume.",
+        "Nenhum movimento de água.",
+        "Produção imediata de parede celular."
+      ],
+      "correct": 1,
+      "explanation": "Em meio hipertônico, a água tende a sair da célula por osmose."
+    }
+  ],
+  "official_items": [],
+  "edition_index": [
+    {
+      "institution": "ENEM",
+      "year": 2024,
+      "booklet": "2º dia — aplicação regular",
+      "source_url": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/provas-e-gabaritos/2024",
+      "status": "Acervo oficial identificado; itens individuais ainda não transcritos e classificados"
+    },
+    {
+      "institution": "ENEM",
+      "year": 2025,
+      "booklet": "Aplicação regular",
+      "source_url": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/provas-e-gabaritos",
+      "status": "Acervo oficial identificado; itens individuais ainda não transcritos e classificados"
+    }
+  ]
+}

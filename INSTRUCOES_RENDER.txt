@@ -1,0 +1,16 @@
+BIOBUSCA — PRIMEIRA PUBLICACAO NO RENDER
+
+1. Crie uma conta em github.com e um repositorio novo, preferencialmente PRIVADO.
+2. No GitHub, escolha Add file > Upload files e envie TODOS os arquivos desta pasta (inclusive render.yaml).
+3. Crie uma conta em render.com e escolha New > Blueprint.
+4. Conecte o GitHub, selecione o repositorio BioBusca e autorize o Blueprint.
+5. Confira o plano Free e confirme Deploy. Nao escolha plano pago.
+6. Aguarde o status Live. Abra a URL https://SEU-SERVICO.onrender.com/mapa.html
+7. Teste com o celular fora da rede Wi-Fi e com mais de um usuario.
+
+ATENCAO:
+- Esta e uma versao experimental. O catalogo de questoes oficiais ainda nao esta completo.
+- O cache de consultas cientificas e temporario; pode ser apagado ao reiniciar o servidor.
+- O servidor gratuito pode adormecer quando nao esta em uso.
+- Nao coloque chaves de API ou senhas no GitHub.
+- Para publicar alteracoes, substitua os arquivos no repositorio e aguarde novo deploy.

@@ -1,0 +1,102 @@
+{
+  "mitocondria": {
+    "name": "Mitocôndria",
+    "area": "Biologia Celular",
+    "sub": "Organelas e metabolismo energético",
+    "keywords": [
+      "ATP",
+      "Cristas mitocondriais",
+      "Respiração celular"
+    ]
+  },
+  "osmose": {
+    "name": "Osmose",
+    "area": "Biologia Celular",
+    "sub": "Transporte através de membranas",
+    "keywords": [
+      "Tonicidade",
+      "Potencial hídrico",
+      "Plasmólise"
+    ]
+  },
+  "selecao": {
+    "name": "Seleção natural",
+    "area": "Biologia Evolutiva",
+    "sub": "Mecanismos evolutivos",
+    "keywords": [
+      "Adaptação",
+      "Variabilidade",
+      "Aptidão"
+    ]
+  },
+  "fotossintese": {
+    "name": "Fotossíntese",
+    "area": "Fisiologia Vegetal",
+    "sub": "Metabolismo fotossintético",
+    "keywords": [
+      "Cloroplasto",
+      "Clorofila",
+      "Fixação de carbono"
+    ]
+  },
+  "meiose": {
+    "name": "Meiose",
+    "area": "Genética",
+    "sub": "Divisão celular e variabilidade",
+    "keywords": [
+      "Crossing-over",
+      "Segregação",
+      "Haploidia"
+    ]
+  },
+  "contracao": {
+    "name": "Contração muscular",
+    "area": "Fisiologia Humana",
+    "sub": "Sistema muscular",
+    "keywords": [
+      "Actina",
+      "Miosina",
+      "ATP"
+    ]
+  },
+  "cafeina": {
+    "name": "Cafeína e sistema nervoso",
+    "area": "Neurofisiologia",
+    "sub": "Modulação da atividade neural",
+    "keywords": [
+      "Cafeína",
+      "Adenosina",
+      "Receptores"
+    ]
+  },
+  "restinga": {
+    "name": "Ecologia de restinga",
+    "area": "Ecologia",
+    "sub": "Ecossistemas costeiros",
+    "keywords": [
+      "Salinidade",
+      "Solo arenoso",
+      "Biodiversidade"
+    ]
+  },
+  "circadiano": {
+    "name": "Ritmos circadianos",
+    "area": "Fisiologia Humana",
+    "sub": "Cronobiologia",
+    "keywords": [
+      "Sono",
+      "Luz",
+      "Relógio biológico"
+    ]
+  },
+  "cacau": {
+    "name": "Cacaueiro",
+    "area": "Botânica",
+    "sub": "Angiospermas e ecologia agrícola",
+    "keywords": [
+      "Theobroma cacao",
+      "Fruto",
+      "Polinização"
+    ]
+  }
+}
