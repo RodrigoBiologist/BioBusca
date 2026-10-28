@@ -1,0 +1,362 @@
+{
+  "version": "3.1-piloto",
+  "area": "Ciências da Natureza e suas Tecnologias",
+  "discipline": "Biologia",
+  "notice": "Descrições das habilidades são SÍNTESES DIDÁTICAS, não transcrições literais da BNCC. Relações com unidades são propostas curriculares, não objetos de conhecimento prescritos pela BNCC.",
+  "official_source": "https://basenacionalcomum.mec.gov.br/",
+  "competencies": [
+    {
+      "id": 1,
+      "title": "Matéria e energia",
+      "description": "Análise de matéria, energia e impactos socioambientais."
+    },
+    {
+      "id": 2,
+      "title": "Vida, Terra e Cosmos",
+      "description": "Dinâmica da vida, da Terra e do Universo e decisões responsáveis."
+    },
+    {
+      "id": 3,
+      "title": "Investigação científica e tecnologia",
+      "description": "Investigação, evidências, comunicação e avaliação tecnológica."
+    }
+  ],
+  "skills": [
+    {
+      "code": "EM13CNT101",
+      "competency": 1,
+      "summary": "Transformações e conservação de matéria e energia; sustentabilidade",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT102",
+      "competency": 1,
+      "summary": "Sistemas térmicos, eficiência e sustentabilidade",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT103",
+      "competency": 1,
+      "summary": "Aplicações, benefícios e riscos das radiações",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT104",
+      "competency": 1,
+      "summary": "Riscos e benefícios de materiais e produtos para saúde e ambiente",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT105",
+      "competency": 1,
+      "summary": "Ciclos biogeoquímicos e efeitos das intervenções humanas",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT106",
+      "competency": 1,
+      "summary": "Tecnologias de geração, distribuição e consumo de energia",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT107",
+      "competency": 1,
+      "summary": "Funcionamento e previsões sobre dispositivos elétricos",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT201",
+      "competency": 2,
+      "summary": "Modelos e teorias sobre origem e evolução da vida, da Terra e do Universo",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT202",
+      "competency": 2,
+      "summary": "Manifestações da vida, níveis de organização e condições para sua existência",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT203",
+      "competency": 2,
+      "summary": "Efeitos de intervenções em ecossistemas e organismos",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT204",
+      "competency": 2,
+      "summary": "Movimentos de corpos na Terra, no Sistema Solar e no Universo",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT205",
+      "competency": 2,
+      "summary": "Probabilidade, incerteza e interpretação de fenômenos e experimentos",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT206",
+      "competency": 2,
+      "summary": "Conservação da biodiversidade e impactos humanos",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT207",
+      "competency": 2,
+      "summary": "Vulnerabilidades, saúde e desafios das juventudes",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT208",
+      "competency": 2,
+      "summary": "Evolução biológica e origem, diversificação e dispersão humana",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT209",
+      "competency": 2,
+      "summary": "Evolução estelar e origem e distribuição de elementos químicos",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT301",
+      "competency": 3,
+      "summary": "Formulação de problemas e hipóteses, investigação e interpretação de evidências",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT302",
+      "competency": 3,
+      "summary": "Comunicação de resultados científicos para diferentes públicos",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT303",
+      "competency": 3,
+      "summary": "Análise crítica de textos e fontes de divulgação científica",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT304",
+      "competency": 3,
+      "summary": "Debates éticos sobre aplicações controversas da ciência",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT305",
+      "competency": 3,
+      "summary": "Usos indevidos da ciência para justificar discriminação",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT306",
+      "competency": 3,
+      "summary": "Avaliação de riscos e medidas de segurança",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT307",
+      "competency": 3,
+      "summary": "Propriedades e aplicações de materiais sustentáveis",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT308",
+      "competency": 3,
+      "summary": "Tecnologias elétricas, eletrônicas e automação",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT309",
+      "competency": 3,
+      "summary": "Recursos não renováveis e alternativas energéticas",
+      "text_type": "síntese didática"
+    },
+    {
+      "code": "EM13CNT310",
+      "competency": 3,
+      "summary": "Infraestrutura, serviços básicos e saúde coletiva",
+      "text_type": "síntese didática"
+    }
+  ],
+  "units": [
+    {
+      "name": "Bioquímica",
+      "topics": "Água, sais minerais, biomoléculas, enzimas e ácidos nucleicos",
+      "skills": [
+        "EM13CNT101",
+        "EM13CNT202"
+      ]
+    },
+    {
+      "name": "Citologia",
+      "topics": "Membranas, transporte celular, organelas, ciclo celular e divisão",
+      "skills": [
+        "EM13CNT101",
+        "EM13CNT202",
+        "EM13CNT301"
+      ]
+    },
+    {
+      "name": "Metabolismo energético",
+      "topics": "ATP, fotossíntese, respiração, fermentação e quimiossíntese",
+      "skills": [
+        "EM13CNT101",
+        "EM13CNT105",
+        "EM13CNT202"
+      ]
+    },
+    {
+      "name": "Histologia e fisiologia",
+      "topics": "Tecidos, sistemas orgânicos, homeostase e regulação",
+      "skills": [
+        "EM13CNT102",
+        "EM13CNT202",
+        "EM13CNT203",
+        "EM13CNT207"
+      ]
+    },
+    {
+      "name": "Reprodução e embriologia",
+      "topics": "Gametogênese, fecundação e desenvolvimento embrionário",
+      "skills": [
+        "EM13CNT202",
+        "EM13CNT207"
+      ]
+    },
+    {
+      "name": "Genética",
+      "topics": "Herança, DNA, expressão gênica, mutações e genética populacional",
+      "skills": [
+        "EM13CNT103",
+        "EM13CNT205",
+        "EM13CNT208"
+      ]
+    },
+    {
+      "name": "Biotecnologia",
+      "topics": "PCR, sequenciamento, edição gênica e bioética",
+      "skills": [
+        "EM13CNT301",
+        "EM13CNT303",
+        "EM13CNT304",
+        "EM13CNT305"
+      ]
+    },
+    {
+      "name": "Evolução biológica",
+      "topics": "Seleção, deriva, especiação, evidências e filogenia",
+      "skills": [
+        "EM13CNT201",
+        "EM13CNT208"
+      ]
+    },
+    {
+      "name": "Diversidade biológica",
+      "topics": "Taxonomia, microrganismos, fungos, plantas e animais",
+      "skills": [
+        "EM13CNT202",
+        "EM13CNT206"
+      ]
+    },
+    {
+      "name": "Botânica",
+      "topics": "Morfologia, anatomia, fisiologia e reprodução vegetal",
+      "skills": [
+        "EM13CNT101",
+        "EM13CNT202",
+        "EM13CNT203"
+      ]
+    },
+    {
+      "name": "Zoologia",
+      "topics": "Diversidade animal, anatomia, fisiologia e adaptações",
+      "skills": [
+        "EM13CNT202",
+        "EM13CNT203",
+        "EM13CNT208"
+      ]
+    },
+    {
+      "name": "Ecologia",
+      "topics": "Populações, comunidades, ciclos, cadeias e ecossistemas",
+      "skills": [
+        "EM13CNT101",
+        "EM13CNT105",
+        "EM13CNT203",
+        "EM13CNT206"
+      ]
+    },
+    {
+      "name": "Conservação ambiental",
+      "topics": "Fragmentação, invasoras, restauração e mudanças climáticas",
+      "skills": [
+        "EM13CNT104",
+        "EM13CNT105",
+        "EM13CNT203",
+        "EM13CNT206",
+        "EM13CNT309"
+      ]
+    },
+    {
+      "name": "Saúde coletiva",
+      "topics": "Imunologia, epidemiologia, saneamento e prevenção",
+      "skills": [
+        "EM13CNT103",
+        "EM13CNT104",
+        "EM13CNT207",
+        "EM13CNT306",
+        "EM13CNT310"
+      ]
+    },
+    {
+      "name": "Investigação científica",
+      "topics": "Hipóteses, amostragem, experimentos, dados e comunicação",
+      "skills": [
+        "EM13CNT205",
+        "EM13CNT301",
+        "EM13CNT302",
+        "EM13CNT303"
+      ]
+    }
+  ],
+  "itineraries": [
+    {
+      "title": "Cidades-esponja e resiliência climática",
+      "description": "Diagnóstico de microbacia e infraestrutura verde",
+      "skills": [
+        "EM13CNT105",
+        "EM13CNT203",
+        "EM13CNT206",
+        "EM13CNT301",
+        "EM13CNT302",
+        "EM13CNT310"
+      ]
+    },
+    {
+      "title": "Genética, biotecnologia e bioética",
+      "description": "Estudo de edição gênica e dilemas éticos",
+      "skills": [
+        "EM13CNT205",
+        "EM13CNT208",
+        "EM13CNT301",
+        "EM13CNT303",
+        "EM13CNT304",
+        "EM13CNT305"
+      ]
+    },
+    {
+      "title": "Saúde única",
+      "description": "Integração entre saúde humana, animal e ambiental",
+      "skills": [
+        "EM13CNT104",
+        "EM13CNT203",
+        "EM13CNT207",
+        "EM13CNT301",
+        "EM13CNT303",
+        "EM13CNT306",
+        "EM13CNT310"
+      ]
+    }
+  ]
+}

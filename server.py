@@ -5,6 +5,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parent
 CONCEPTS=json.loads((ROOT/'catalog.json').read_text(encoding='utf-8'))
+CURRICULUM=json.loads((ROOT/'curriculo_bncc.json').read_text(encoding='utf-8'))
 EXAMS=json.loads((ROOT/'exams.json').read_text(encoding='utf-8'))
 OFFICIAL=json.loads((ROOT/'official_questions.json').read_text(encoding='utf-8'))
 ANSWER_INDEX=json.loads((ROOT/'enem_2024_caderno7_gabaritos.json').read_text(encoding='utf-8'))
@@ -108,39 +109,43 @@ CONNECTIONS={
 def graph(term):
     q=term.strip()[:120]
     if not q: raise ValueError('Informe uma palavra para pesquisar.')
-    normalized=norm(q)
-    selected=[m['id'] for m in match(q)]
-    for k,ids in CONNECTIONS.items():
-        if norm(k)==normalized:
-            selected=list(dict.fromkeys(ids+selected))
-            break
-    # Fallback: não inventar associação; mostrar termos pesquisados sem conceitos forçados.
-    selected=selected[:6]
+    n=norm(q)
+    # Ligações explícitas e auditáveis do catálogo. Nenhuma associação é
+    # inferida de uma simples substring ou de títulos bibliográficos.
+    direct=[]
+    for cid,c in CONCEPTS.items():
+        terms=[cid,c['name']]+c.get('aliases',[])+c.get('keywords',[])
+        if any(norm(str(t))==n for t in terms): direct.append(cid)
+    if not direct:
+        # Um termo não cadastrado não deve produzir conexões fictícias.
+        return {'query':q,'nodes':[{'id':'search:'+q,'kind':'pesquisa','label':q,'description':'Termo pesquisado; ainda não consta no catálogo científico curado.'}], 'edges':[], 'counts':{},'errors':[], 'notice':'Termo não catalogado. Nenhuma associação científica foi inventada.'}
+    selected=list(dict.fromkeys(direct))[:4]
+    for cid in list(selected):
+        for rel in CONCEPTS[cid].get('related',[]):
+            if rel in CONCEPTS and rel not in selected: selected.append(rel)
+    selected=selected[:20]
     nodes=[{'id':'search:'+q,'kind':'pesquisa','label':q,'description':'Termo pesquisado pelo estudante'}]
     edges=[]
     for cid in selected:
         c=CONCEPTS[cid]
-        nodes.append({'id':'concept:'+cid,'kind':'conceito','label':c['name'],'description':c['area']+' · '+c['sub'],'concept_id':cid})
-        edges.append({'from':'search:'+q,'to':'concept:'+cid,'type':'associação temática demonstrativa','status':'catálogo local'})
+        nodes.append({'id':'concept:'+cid,'kind':'conceito','label':c['name'],'description':c['area']+' · '+c['sub'],'area':c['area'],'sub':c['sub'],'_keywords':c.get('keywords',[]),'concept_id':cid,'curricular_unit':c.get('curricular_unit'),'bncc_skills':c.get('bncc_skills',[])})
+        if cid in direct:
+            edges.append({'from':'search:'+q,'to':'concept:'+cid,'type':'correspondência exata de termo ou descritor','status':'catálogo local curado'})
+    for cid in selected:
+        for rel in CONCEPTS[cid].get('related',[]):
+            if rel in selected:
+                pair=tuple(sorted([cid,rel]))
+                if not any(e.get('pair')==pair for e in edges):
+                    edges.append({'from':'concept:'+cid,'to':'concept:'+rel,'type':'relação conceitual declarada','status':'catálogo didático; revisão bibliográfica específica pendente','pair':pair})
+    for cid in selected:
+        c=CONCEPTS[cid]
         for kw in c.get('keywords',[])[:4]:
             kid='term:'+norm(kw)
-            if not any(n['id']==kid for n in nodes):nodes.append({'id':kid,'kind':'palavra_chave','label':kw,'description':'Descritor do catálogo local'})
-            edges.append({'from':'concept:'+cid,'to':kid,'type':'possui palavra-chave','status':'catálogo local'})
-    # Pesquisa bibliográfica com termo original. Associação é temática, não validação de alegação.
-    lit=literature(q)
-    for i,article in enumerate(lit['results'][:12]):
-        aid='article:'+(article.get('doi') or norm(article['title']) or str(i))
-        nodes.append({'id':aid,'kind':'artigo','label':article['title'],'description':str(article.get('year') or '')+' · '+str(article.get('source') or ''),'article':article})
-        edges.append({'from':'search:'+q,'to':aid,'type':'recuperado pela busca bibliográfica','status':'não validado como evidência'})
-        hay=norm((article.get('title') or '')+' '+(article.get('abstract') or ''))
-        for cid in selected:
-            c=CONCEPTS[cid]
-            terms=[c['name']]+c.get('keywords',[])
-            hits=[t for t in terms if len(norm(t))>=5 and norm(t) in hay]
-            if hits:
-                edges.append({'from':'concept:'+cid,'to':aid,'type':'coocorrência textual: '+', '.join(hits[:2]),'status':'candidato a leitura, não comprovação'})
-    return {'query':q,'nodes':nodes,'edges':edges,'counts':lit['counts'],'errors':lit['errors'],
-      'scielo_url':lit['scielo_url'], 'notice':'Grafo exploratório: relações locais são didáticas e a correspondência com artigos é textual/temática, não validação automática das afirmações. Questões são autorais e não oficiais.'}
+            if not any(node['id']==kid for node in nodes):
+                nodes.append({'id':kid,'kind':'palavra_chave','label':kw,'description':'Descritor do catálogo local'})
+            edges.append({'from':'concept:'+cid,'to':kid,'type':'descritor associado','status':'catálogo local'})
+    return {'query':q,'nodes':nodes,'edges':edges,'counts':{},'errors':[],
+            'notice':'Conexões didáticas explícitas do catálogo. Artigos bibliográficos não são inseridos como conceitos.'}
 
 class Handler(SimpleHTTPRequestHandler):
     # Somente recursos públicos: não expor código Python, arquivos internos ou cache.
@@ -155,6 +160,8 @@ class Handler(SimpleHTTPRequestHandler):
     def __init__(self,*args,**kwargs): super().__init__(*args,directory=str(ROOT),**kwargs)
     def do_GET(self):
         path=urllib.parse.urlparse(self.path)
+        if path.path=='/api/curriculum':
+            return self.reply(CURRICULUM)
         if path.path=='/health':
             return self.reply({'status':'ok','service':'BioBusca'})
         if path.path=='/api/scientific':
@@ -183,36 +190,67 @@ class Handler(SimpleHTTPRequestHandler):
                 if path.path=='/api/literature': return self.reply(literature(term))
                 if path.path=='/api/graph': return self.reply(graph(term))
                 if path.path=='/api/learning-map':
-                    g=graph(term)
-                    selected={n.get('concept_id') for n in g['nodes'] if n.get('kind')=='conceito'}
-                    questions=[] # Questões autorais demonstrativas não são atribuídas automaticamente
-                    official=[x for x in OFFICIAL if selected.intersection(x['concepts'])]
-                    for item in questions:
-                        qid='exam:'+item['id']
-                        g['nodes'].append({'id':qid,'kind':'questao','label':item['title'],'description':'Questão autoral demonstrativa; não é prova oficial','exam_id':item['id']})
-                        for cid in item['concepts']:
-                            if cid in selected:
-                                g['edges'].append({'from':'concept:'+cid,'to':qid,'type':'conceito necessário para resolver','status':'vínculo didático demonstrativo'})
-                    for item in official:
-                        qid='official:'+item['id']
-                        g['nodes'].append({'id':qid,'kind':'questao','label':item['title'],'description':'ENEM oficial: '+str(item['year'])+' / '+item['booklet']+' / questão '+str(item['number']),'exam_id':item['id'],'official':True})
-                        for cid in item['concepts']:
-                            if cid in selected:
-                                g['edges'].append({'from':'concept:'+cid,'to':qid,'type':'conteúdo da questão oficial','status':'classificação temática declarada'})
-                    g['exams']=questions
-                    g['official_exams']=official
-                    g['official_count_total']=len(OFFICIAL)
-                    g['edition_index']=EXAMS['edition_index']
-                    g['official_sources']=EXAMS['sources']
-                    g['notice']='Relações e escores são heurísticos exploratórios. Apenas itens cadastrados com origem e gabarito conferidos aparecem como oficiais. Nenhum item oficial está pré-cadastrado.'
-                    return self.reply(g)
+                    return self.reply(self.learning_map(term))
+                if path.path=='/api/integrar':
+                    from integracao import search as search_scientific
+                    from concurrent.futures import ThreadPoolExecutor
+                    with ThreadPoolExecutor(max_workers=2) as pool:
+                        map_job=pool.submit(self.learning_map,term)
+                        science_job=pool.submit(search_scientific,term)
+                        curricular_map=map_job.result()
+                        try:
+                            science=science_job.result()
+                        except Exception as exc:
+                            science={'query':term,'providers':{},'error':'Fontes científicas temporariamente indisponíveis'}
+                    return self.reply({
+                        'version':'3.2-piloto',
+                        'query':term,
+                        'map':curricular_map,
+                        'scientific':science,
+                        'curriculum':{
+                            'area':CURRICULUM.get('area'),
+                            'competencies':CURRICULUM.get('competencies',[]),
+                            'skills':CURRICULUM.get('skills',[]),
+                            'units':CURRICULUM.get('units',[])
+                        },
+                        'provenance':{
+                            'concepts':'catálogo local estruturado, não inferência dos artigos',
+                            'scientific':'consultas online ou cache, sem validação automática de evidências',
+                            'questions':'somente questões oficiais verificadas e cadastradas',
+                            'curriculum':'sínteses e associações didáticas baseadas na BNCC'
+                        }
+                    })
                 if path.path=='/api/evidence': return self.reply({'query':term,'results':evidence(term),'notice':'Resultados bibliográficos recuperados automaticamente, NÃO revisados individualmente.'})
                 return self.reply({'error':'Rota inexistente'},404)
             except Exception: return self.reply({'error':'Fonte externa temporariamente indisponível'},503)
         return super().do_GET()
+    def learning_map(self,term):
+        g=graph(term)
+        selected={n.get('concept_id') for n in g['nodes'] if n.get('kind')=='conceito'}
+        questions=[] # Questões autorais demonstrativas não são atribuídas automaticamente
+        official=[x for x in OFFICIAL if selected.intersection(x['concepts'])]
+        for item in questions:
+            qid='exam:'+item['id']
+            g['nodes'].append({'id':qid,'kind':'questao','label':item['title'],'description':'Questão autoral demonstrativa; não é prova oficial','exam_id':item['id']})
+            for cid in item['concepts']:
+                if cid in selected:
+                    g['edges'].append({'from':'concept:'+cid,'to':qid,'type':'conceito necessário para resolver','status':'vínculo didático demonstrativo'})
+        for item in official:
+            qid='official:'+item['id']
+            g['nodes'].append({'id':qid,'kind':'questao','label':item['title'],'description':'ENEM oficial: '+str(item['year'])+' / '+item['booklet']+' / questão '+str(item['number']),'exam_id':item['id'],'official':True})
+            for cid in item['concepts']:
+                if cid in selected:
+                    g['edges'].append({'from':'concept:'+cid,'to':qid,'type':'conteúdo da questão oficial','status':'classificação temática declarada'})
+        g['exams']=questions
+        g['official_exams']=official
+        g['official_count_total']=len(OFFICIAL)
+        g['edition_index']=EXAMS['edition_index']
+        g['official_sources']=EXAMS['sources']
+        g['notice']='Relações e escores são heurísticos exploratórios. Apenas itens cadastrados com origem e gabarito conferidos aparecem como oficiais. Nenhum item oficial está pré-cadastrado.'
+        return g
     def reply(self,obj,status=200):
         b=json.dumps(obj,ensure_ascii=False).encode();self.send_response(status);self.send_header('Content-Type','application/json; charset=utf-8');self.send_header('Cache-Control','no-store');self.send_header('Content-Length',str(len(b)));self.end_headers();self.wfile.write(b)
 if __name__=='__main__':
     port=int(os.environ.get('PORT','8000'))
-    print(f'BioBusca 2.2 web na porta {port}', flush=True)
+    print(f'BioBusca 3.2 web na porta {port}', flush=True)
     ThreadingHTTPServer(('0.0.0.0',port),Handler).serve_forever()

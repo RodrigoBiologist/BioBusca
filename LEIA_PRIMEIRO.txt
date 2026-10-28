@@ -1,10 +1,13 @@
-BioBusca 2.2 — correção de resultados repetidos
+BIOBUSCA 3.2 — INTEGRAÇÃO ONLINE (PILOTO)
 
-1. Pare o servidor antigo: Ctrl+C.
-2. Extraia este ZIP em pasta NOVA.
-3. Abra a pasta e digite cmd na barra de endereço.
-4. Execute: py server.py
-5. Abra http://localhost:8000/mapa.html e pressione Ctrl+Shift+R.
-6. Teste fotossíntese e cafeína, comparando os nós e artigos.
+1. Extraia este ZIP.
+2. No GitHub, atualize os arquivos server.py e mapa.html.
+3. Se você ainda não publicou o BioBusca 3.1, adicione também curriculo_bncc.json e catalog.json.
+4. Verifique que integracao.py, exams.json, official_questions.json e enem_2024_caderno7_gabaritos.json continuam na raiz do repositório.
+5. Render publica automaticamente após o commit, se Auto Deploy estiver ativado.
+6. Acesse https://biobusca.onrender.com/mapa.html e pesquise água.
+7. Teste a resposta JSON em https://biobusca.onrender.com/api/integrar?q=agua
 
-Correções: impede mistura de resultados de buscas sucessivas, limpa nós anteriores, deixa de apresentar questões autorais demonstrativas como resultado automático e prefere DOI para abrir artigos. O catálogo local ainda é pequeno. Sem questões oficiais classificadas, o mapa não inventará uma. SciELO pode apresentar erro 502 do serviço externo.
+A nova rota /api/integrar reúne em UMA requisição HTTP o mapa local/BNCC e consultas às APIs Europe PMC, OpenAlex e MeSH/NCBI. As fontes científicas são consultadas online ou por cache SQLite temporário. A página usa essa rota para a pesquisa principal. O catálogo de conceitos e a BNCC continuam locais e versionados. NÃO há atualização automática do currículo nem ingestão automática de questões oficiais nesta versão. O banco de questões verificadas permanece vazio até importação e classificação reais.
+
+No Render Free, o cache SQLite em /tmp pode desaparecer após reinício. Não é banco persistente.
